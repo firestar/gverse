@@ -1,6 +1,5 @@
 import * as dgraph from "dgraph-js"
-import * as grpc from "grpc"
-import chalk from "chalk"
+import * as grpc from "@grpc/grpc-js"
 import log from "./debug-logger"
 import { Transaction } from "./transaction"
 import { shouldRetry, waitPromise } from "./retry"
@@ -44,11 +43,11 @@ export class Connection {
         console.log(
           "🔅 Connected to",
           "Dgraph zero at",
-          chalk.blue.bold(this.environment.host) +
+          this.environment.host +
             ":" +
-            chalk.blue.bold(`${this.environment.port}`),
+            `${this.environment.port}`,
           "with",
-          chalk.cyan.bold(res.total.pop().count),
+          res.total.pop().count,
           "vertices\n"
         )
       this.verified = true

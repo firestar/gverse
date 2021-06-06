@@ -1,13 +1,13 @@
 import * as dgraph from "dgraph-js"
 import { Connection } from "./connection"
 import log from "./debug-logger"
-import uuidv4 from "uuid/v4"
+import { v4 } from "uuid"
 import { waitPromise, shouldRetry } from "./retry"
 
 /** Represents a dgraph transaction that can be created on demand or explicitly. */
 export class Transaction {
   private txn: dgraph.Txn
-  private uuid: string = uuidv4()
+  private uuid: string = v4()
   constructor(
     readonly connection: Connection,
     readonly autoCommit: boolean,
